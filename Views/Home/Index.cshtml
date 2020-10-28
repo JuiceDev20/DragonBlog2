@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DragonBlog2.Models.Post>
+    @{
+        ViewData["Title"] = "Home Page"; 
+}
+
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        @foreach (var post in Model)
+        {
+            <div class="post-preview">
+                <a asp-action="Details" asp-route-id="@post.Id">
+                    <h2 class="post-title">
+                        @post.Title
+                    </h2>
+                    <h4 class="post-subtitle">
+                        @post.Abstract
+                    </h4>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#">O J Olmo</a>
+                    on @post.Created.ToString("MMMM dd, yyyy")
+                </p>
+            </div>
+            <hr>
+        }
+
+        <!-- Pager -->
+        <div class="clearfix">
+            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+    </div>
+</div>
