@@ -5,14 +5,14 @@
     var imageHelper = new DragonBlog2.Utilities.ImageHelper();
 }
 
-@*<header class="masthead" style="background-image: url('@imageHelper.DecodeImage(Model.Image, Model.FileName)')">*@
+<header class="masthead" style="background-image: url('@imageHelper.DecodeImage(Model.Image, Model.FileName)')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-heading">
                     <h1>@Model.Title</h1>
-                    @*<h2 class="subheading">Problems look mighty small from 150 miles up</h2>*@
+                    <h2 class="subheading">@Model.Abstract</h2>
                     <span class="meta">
                         Posted by
                         <a href="#">O J Olmo</a>
@@ -22,14 +22,14 @@
             </div>
         </div>
     </div>
-@*</header>*@
+</header>
 
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-@Html.Raw(Model.Content)
+                @Html.Raw(Model.Content)
             </div>
         </div>
     </div>

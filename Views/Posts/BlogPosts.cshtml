@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "BlogPosts";
+    var imageHelper = new DragonBlog2.Utilities.ImageHelper();
 }
 
 <h1>The Blog: @ViewData["BlogName"]</h1>
@@ -50,7 +51,9 @@
                 @Html.Raw(item.Content)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                @if (item.Image != null) {
+                <img src="@imageHelper.DecodeImage(item.Image, item.FileName)" alt="Not Available" />
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Created)

@@ -1,5 +1,9 @@
 ﻿using DragonBlog2.Data;
+using DragonBlog2.Enum;
+using DragonBlog2.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.CodeAnalysis.CSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,37 +11,54 @@ using System.Threading.Tasks;
 
 namespace DragonBlog2.Utilities
 {
-    public class SeedHelper
+    public static class SeedHelper
     {
-        private ApplicationDbContext _context;
-        
-        public SeedHelper(ApplicationDbContext context)
+        public static async Task SeedDataAsync(UserManager<BlogUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _context = context;
+            await SeedRoles(roleManager);
+            await SeedAdmin(userManager);
+            await SeedModerator(userManager);
         }
 
-        public async Task SeedData()
+        private static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
         {
-            SeedRoles();
-            SeedUsersAndAssign();
+            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
         }
 
-        public async void SeedRoles()
+        private static async Task SeedAdmin(UserManager<BlogUser> userManager)
         {
-            var roleStore = new RoleStore<IdentityRole>(_context);
-
-            var roles = new List<string> { "Admin", "Moderator" };
-            foreach(var role in roles)
+            if (await userManager.FindByEmailAsync("ojolmo@gmail.com") == null)
             {
-                if(!_context.Roles.Any(r => r.Name == "admin"))
+                var admin = new BlogUser()
                 {
-                    await roleStore.CreateAsync(new IdentityRole { Name = role, NormalizedName = role.ToLower() });
-                }
+                    Email = "ojolmo@gmail.com",
+                    UserName = "ojolmo@gmail.com",
+                    FirstName = "Orlando",
+                    LastName = "Olmo",
+                    EmailConfirmed = true,
+                };
+                await userManager.CreateAsync(admin, "Abc123!");
+                await userManager.AddToRoleAsync(admin, Roles.Admin.ToString());
             }
         }
-    
-    public async void SeedAdminUser()
-    {
+
+        private static async Task SeedModerator(UserManager<BlogUser> userManager)
+        {
+            if (await userManager.FindByEmailAsync("JasonTwichell@CoderFoundry.com") == null)
+            {
+                var admin = new BlogUser()
+                {
+                    Email = "JasonTwichell@CoderFoundry.com",
+                    UserName = "JasonTwichell@CoderFoundry.com",
+                    FirstName = "Jason",
+                    LastName = "Twichell",
+                    EmailConfirmed = true,
+                };
+                await userManager.CreateAsync(admin, "Abc123!");
+                await userManager.AddToRoleAsync(admin, Roles.Admin.ToString());
+            }
+        }
 
     }
 }
