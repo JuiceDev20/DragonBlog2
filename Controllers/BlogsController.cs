@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DragonBlog2.Data;
 using DragonBlog2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DragonBlog2.Controllers
 {
@@ -44,6 +45,7 @@ namespace DragonBlog2.Controllers
         }
 
         // GET: Blogs/Create
+        [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
             return View();

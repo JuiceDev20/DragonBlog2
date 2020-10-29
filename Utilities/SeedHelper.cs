@@ -45,18 +45,18 @@ namespace DragonBlog2.Utilities
 
         private static async Task SeedModerator(UserManager<BlogUser> userManager)
         {
-            if (await userManager.FindByEmailAsync("JasonTwichell@CoderFoundry.com") == null)
+            if (await userManager.FindByEmailAsync("ojolmo8@gmail.com") == null)
             {
                 var admin = new BlogUser()
                 {
-                    Email = "JasonTwichell@CoderFoundry.com",
-                    UserName = "JasonTwichell@CoderFoundry.com",
-                    FirstName = "Jason",
-                    LastName = "Twichell",
+                    Email = "ojolmo8@gmail.com",
+                    UserName = "ojolmo8@gmail.com",
+                    FirstName = "Orlando",
+                    LastName = "Olmo",
                     EmailConfirmed = true,
                 };
                 await userManager.CreateAsync(admin, "Abc123!");
-                await userManager.AddToRoleAsync(admin, Roles.Admin.ToString());
+                await userManager.AddToRoleAsync(admin, Roles.Moderator.ToString());
             }
         }
 

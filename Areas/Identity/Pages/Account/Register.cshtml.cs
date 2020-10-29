@@ -65,16 +65,16 @@ namespace DragonBlog2.Areas.Identity.Pages.Account
             [Required]
             [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [Display(Name = "First Name")]
-            public string FirstName { get; internal set; }
+            public string FirstName { get; set; }
 
             [Required]
             [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [Display(Name = "Last Name")]
-            public string LastName { get; internal set; }
+            public string LastName { get; set; }
 
             [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [Display(Name = "Display Name")]
-            public string DisplayName { get; internal set; }
+            public string DisplayName { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
