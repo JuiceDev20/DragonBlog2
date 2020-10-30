@@ -7,19 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DragonBlog2.Data;
 using DragonBlog2.Models;
+using System.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DragonBlog2.Controllers
 {
     public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<BlogUser> _userManager;
 
-        public CommentsController(ApplicationDbContext context)
+        public CommentsController(ApplicationDbContext context, UserManager<BlogUser> manager)
         {
+            _userManager = manager;
             _context = context;
         }
 
-        // GET: Comments
+        // GET: Comments 
+        [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Comment.Include(c => c.BlogUser).Include(c => c.Post);
@@ -59,10 +65,13 @@ namespace DragonBlog2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PostId,BlogUserId,Content,Created,Updated")] Comment comment)
+        public async Task<IActionResult> Create([Bind("PostId")] Comment comment, string commentContent)
         {
             if (ModelState.IsValid)
             {
+                comment.BlogUserId = _userManager.GetUserId(User);
+                comment.Created = DateTime.Now;
+                comment.Content = commentContent;
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
