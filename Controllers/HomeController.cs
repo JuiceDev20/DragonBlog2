@@ -19,7 +19,8 @@ namespace DragonBlog2.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Post.Where(p => p.IsPublished).OrderByDescending(p => p.Created).ToList());
+            //return View(_context.Post.Where(p => p.IsPublished == true).OrderByDescending(p => p.Created).ToList());
+            return View(_context.Post.OrderByDescending(p => p.Created).ToList());
         }
 
         public IActionResult Privacy()

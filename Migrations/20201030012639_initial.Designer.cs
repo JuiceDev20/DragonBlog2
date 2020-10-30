@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DragonBlog2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201029172229_initial")]
+    [Migration("20201030012639_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
