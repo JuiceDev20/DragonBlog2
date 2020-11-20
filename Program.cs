@@ -1,18 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
-using DragonBlog2.Data;
 using DragonBlog2.Models;
 using DragonBlog2.Utilities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace DragonBlog2
 {
@@ -21,6 +14,7 @@ namespace DragonBlog2
         public async static Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+            await DataHelper.ManageData(host);
             await SeedDataAsync(host);
             host.Run();
         }
@@ -29,7 +23,10 @@ namespace DragonBlog2
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.CaptureStartupErrors(true);
+                    webBuilder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
                     webBuilder.UseStartup<Startup>();
+
                 });
 
         public async static Task SeedDataAsync(IHost host) 

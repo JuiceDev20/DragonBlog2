@@ -51,7 +51,8 @@
                 @Html.Raw(item.Content)
             </td>
             <td>
-                @if (item.Image != null) {
+                @if (item.Image != null) 
+                {
                 <img src="@imageHelper.DecodeImage(item.Image, item.FileName)" alt="Not Available" />
                 }
             </td>
