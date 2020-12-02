@@ -38,7 +38,7 @@ namespace DragonBlog2.Utilities
                     LastName = "Olmo",
                     EmailConfirmed = true,
                 };
-                await userManager.CreateAsync(admin, "Abc123!");
+                await userManager.CreateAsync(admin, "Dr@gonBl0g2");
                 await userManager.AddToRoleAsync(admin, Roles.Admin.ToString());
             }
         }

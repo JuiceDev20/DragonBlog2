@@ -43,7 +43,7 @@
             @Html.Hidden("PostId", Model.Id)
             <div class="form-group">
                 <label asp-for="Content" class="control-label"></label>
-                <input name="CommentContent" asp-for="Content" class="form-control" />
+                <input name="CommentContent" class="form-control" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
