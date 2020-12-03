@@ -14,7 +14,7 @@ namespace DragonBlog2.Models
         public int BlogId { get; set; }
  
 
-
+        //Post Properties
         public string Title { get; set; }
 
         public string Abstract { get; set; }
