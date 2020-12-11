@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DragonBlog2.Data;
 using DragonBlog2.Models;
@@ -19,7 +16,7 @@ namespace DragonBlog2.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
@@ -45,12 +42,13 @@ namespace DragonBlog2.Controllers
         }
 
         // GET: Blogs/Create
-        [Authorize(Roles ="Admin")]
+        
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Blogs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

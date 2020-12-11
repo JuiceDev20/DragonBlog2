@@ -28,8 +28,4 @@
     <None Include="wwwroot\favicon.ico" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-
 </Project>

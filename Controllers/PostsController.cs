@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using DragonBlog2.Data;
 using DragonBlog2.Models;
 using Microsoft.AspNetCore.Http;
-using System.IO;
 using DragonBlog2.Utilities;
 
 namespace DragonBlog2.Controllers

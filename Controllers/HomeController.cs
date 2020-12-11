@@ -4,9 +4,11 @@ using Microsoft.Extensions.Logging;
 using DragonBlog2.Models;
 using DragonBlog2.Data;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DragonBlog2.Controllers
-{
+{   
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
