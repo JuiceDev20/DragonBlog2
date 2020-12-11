@@ -37,7 +37,7 @@
 @if (User.Identity.IsAuthenticated)
 {
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-controller="Comments" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.Hidden("PostId", Model.Id)

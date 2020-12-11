@@ -23,6 +23,7 @@ namespace DragonBlog2.Models
         public BlogUser()
         {
             Comments = new HashSet<Comment>();
+            DisplayName = "New User";
 
         }
     }

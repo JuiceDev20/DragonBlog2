@@ -8,6 +8,8 @@ using DragonBlog2.Data;
 using DragonBlog2.Models;
 using Microsoft.AspNetCore.Http;
 using DragonBlog2.Utilities;
+using DragonBlog2.Enum;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DragonBlog2.Controllers
 {
@@ -20,7 +22,7 @@ namespace DragonBlog2.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         // GET: Posts
         public async Task<IActionResult> Index()
         {
@@ -49,7 +51,7 @@ namespace DragonBlog2.Controllers
             
             return View(post);
         }
-
+        [Authorize(Roles="Admin")]
         // GET: Posts/Create
         public IActionResult Create(int? id)
         {
@@ -73,7 +75,7 @@ namespace DragonBlog2.Controllers
 
             return View(post);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see https://go.microsoft.com/fwlink/?LinkId=317598.

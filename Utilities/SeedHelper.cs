@@ -1,12 +1,6 @@
-﻿using DragonBlog2.Data;
-using DragonBlog2.Enum;
+﻿using DragonBlog2.Enum;
 using DragonBlog2.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.CodeAnalysis.CSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DragonBlog2.Utilities
@@ -45,17 +39,17 @@ namespace DragonBlog2.Utilities
 
         private static async Task SeedModerator(UserManager<BlogUser> userManager)
         {
-            if (await userManager.FindByEmailAsync("JasonTwichell@CoderFoundry.com") == null)
+            if (await userManager.FindByEmailAsync("betholmo@gmail.com") == null)
             {
                 var moderator = new BlogUser()
                 {
-                    Email = "JasonTwichell@CoderFoundry.com",
-                    UserName = "JasonTwichell@CoderFoundry.com",
-                    FirstName = "Jason",
-                    LastName = "Twichell",
+                    Email = "betholmo@gmail.com",
+                    UserName = "betholmo.com",
+                    FirstName = "Beth",
+                    LastName = "Olmo",
                     EmailConfirmed = true,
                 };
-                await userManager.CreateAsync(moderator, "Abc123!");
+                await userManager.CreateAsync(moderator, "Dr@gonBl0g3");
                 await userManager.AddToRoleAsync(moderator, Roles.Moderator.ToString());
             }
         }

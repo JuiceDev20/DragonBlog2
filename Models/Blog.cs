@@ -8,19 +8,21 @@ namespace DragonBlog2.Models
 {
     public class Blog
     {
-            //This postis intended for categorization of posts
+        //This postis intended for categorization of posts
 
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Url { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Url { get; set; }
 
-            //Navigation
-            public virtual ICollection<Post> Posts { get; set; }
+        //Navigation
+        public virtual ICollection<Post> Posts { get; set; }
 
-            public Blog() 
+        public Blog()
         {
             Posts = new HashSet<Post>();
         }
+        
+        
 
        
     }
